@@ -1,0 +1,27 @@
+{
+  "name": "content_from_instruction",
+  "strict": true,
+  "schema": {
+    "type": "object",
+    "properties": {
+      "headline": {
+        "type": "string",
+        "description": "Headline textual content."
+      },
+      "text": {
+        "type": "string",
+        "description": "Main textual content."
+      },
+      "summary": {
+        "type": "string",
+        "description": "Summary  textual content."
+      }
+    },
+    "required": [
+      "headline",
+      "text",
+      "summary"
+    ],
+    "additionalProperties": false
+  }
+}

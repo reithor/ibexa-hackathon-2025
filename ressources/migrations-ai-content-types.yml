@@ -1,0 +1,177 @@
+-
+    type: content_type_group
+    mode: create
+    metadata:
+        identifier: AI
+        creationDate: '2025-09-29T14:19:49+02:00'
+        creatorId: 14
+        isSystem: false
+-
+    type: content_type
+    mode: create
+    metadata:
+        identifier: ai_content
+        mainTranslation: eng-GB
+        creatorId: 14
+        creationDate: '2025-09-25T14:46:00+02:00'
+        remoteId: d7b72aa3afe9867e1dd41ba368565f4d
+        urlAliasSchema: ''
+        nameSchema: '<headline>'
+        container: false
+        defaultAlwaysAvailable: true
+        defaultSortField: 2
+        defaultSortOrder: 0
+        contentTypeGroups:
+            - AI
+        translations:
+            eng-GB:
+                name: 'AI Content'
+                description: ''
+    fields:
+        -
+            identifier: headline
+            type: ezstring
+            position: 0
+            translations:
+                eng-GB:
+                    name: Headline
+                    description: ''
+            required: false
+            searchable: true
+            infoCollector: false
+            translatable: false
+            category: content
+            defaultValue: null
+            fieldSettings: {  }
+            validatorConfiguration:
+                StringLengthValidator:
+                    maxStringLength: null
+                    minStringLength: null
+        -
+            identifier: summary
+            type: eztext
+            position: 1
+            translations:
+                eng-GB:
+                    name: Summary
+                    description: ''
+            required: false
+            searchable: true
+            infoCollector: false
+            translatable: false
+            category: content
+            defaultValue: null
+            fieldSettings:
+                textRows: 10
+            validatorConfiguration: {  }
+        -
+            identifier: text
+            type: eztext
+            position: 1
+            translations:
+                eng-GB:
+                    name: Text
+                    description: ''
+            required: false
+            searchable: true
+            infoCollector: false
+            translatable: false
+            category: content
+            defaultValue: null
+            fieldSettings:
+                textRows: 10
+            validatorConfiguration: {  }
+        -
+            identifier: image
+            type: ezimage
+            position: 2
+            translations:
+                eng-GB:
+                    name: image
+                    description: ''
+            required: false
+            searchable: true
+            infoCollector: false
+            translatable: false
+            category: content
+            defaultValue: null
+            fieldSettings:
+                mimeTypes: {  }
+            validatorConfiguration:
+                FileSizeValidator:
+                    maxFileSize: null
+                AlternativeTextValidator:
+                    required: false
+            thumbnail: false
+    references:
+        -
+            name: ref__ai_content__content_type_id
+            type: content_type_id
+-
+    type: content_type
+    mode: create
+    metadata:
+        identifier: ai_task
+        mainTranslation: eng-GB
+        creatorId: 14
+        creationDate: '2025-09-25T13:16:12+02:00'
+        remoteId: ca26d590cdfebdf369797299ff0974e7
+        urlAliasSchema: ''
+        nameSchema: '<task_input>'
+        container: false
+        defaultAlwaysAvailable: true
+        defaultSortField: 2
+        defaultSortOrder: 0
+        contentTypeGroups:
+            - AI
+        translations:
+            eng-GB:
+                name: 'AI Task'
+                description: ''
+    fields:
+        -
+            identifier: task_type
+            type: ezselection
+            position: 0
+            translations:
+                eng-GB:
+                    name: 'Task Type'
+                    description: ''
+            required: true
+            searchable: true
+            infoCollector: false
+            translatable: false
+            category: content
+            defaultValue: {  }
+            fieldSettings:
+                isMultiple: false
+                options:
+                    - 'Create Campaing Content'
+                    - ''
+                multilingualOptions:
+                    eng-GB: ['Create Campaing Content', '']
+            validatorConfiguration: {  }
+        -
+            identifier: task_input
+            type: eztext
+            position: 1
+            translations:
+                eng-GB:
+                    name: Instruction
+                    description: ''
+            required: false
+            searchable: true
+            infoCollector: false
+            translatable: false
+            category: content
+            defaultValue: null
+            fieldSettings:
+                textRows: 10
+            validatorConfiguration: {  }
+    references:
+        -
+            name: ref__ai_task__content_type_id
+            type: content_type_id
+        -
+            name: ref__AI__content_type_group_id
+            type: content_type_group_id

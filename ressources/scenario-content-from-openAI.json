@@ -1,0 +1,979 @@
+{
+    "name": "Content From OpenAI Assistant",
+    "flow": [
+        {
+            "id": 1,
+            "module": "ibexa-dxp:watchContentItems",
+            "version": 1,
+            "parameters": {
+                "limit": 1,
+                "__IMTCONN__": 4445,
+                "operationType": "created",
+                "contentTypeIdentifier": "ai_task"
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0
+                },
+                "restore": {
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "ibexa-dxp"
+                            },
+                            "label": "https://yourdxpurl.com/ (https://yourdxpurl.com as admin)"
+                        },
+                        "operationType": {
+                            "label": "Create"
+                        },
+                        "contentTypeIdentifier": {
+                            "label": "AI Task"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:ibexa-dxp",
+                        "label": "Connection",
+                        "required": true
+                    },
+                    {
+                        "name": "operationType",
+                        "type": "select",
+                        "label": "Operation type",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "created",
+                                "modified"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "contentTypeIdentifier",
+                        "type": "select",
+                        "label": "Content type"
+                    },
+                    {
+                        "name": "limit",
+                        "type": "uinteger",
+                        "label": "Limit",
+                        "required": true
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "id",
+                        "type": "uinteger",
+                        "label": "ID"
+                    },
+                    {
+                        "name": "name",
+                        "type": "text",
+                        "label": "Name"
+                    },
+                    {
+                        "name": "remoteId",
+                        "type": "text",
+                        "label": "Remote Id"
+                    },
+                    {
+                        "name": "currentVersionNo",
+                        "type": "uinteger",
+                        "label": "Current version number"
+                    },
+                    {
+                        "name": "contentTypeId",
+                        "type": "integer",
+                        "label": "Content Type ID"
+                    },
+                    {
+                        "name": "versionNo",
+                        "type": "integer",
+                        "label": "version number"
+                    },
+                    {
+                        "name": "sectionId",
+                        "type": "integer",
+                        "label": "Section ID"
+                    },
+                    {
+                        "name": "mainLocationId",
+                        "type": "integer",
+                        "label": "Main Location ID"
+                    },
+                    {
+                        "name": "ownerId",
+                        "type": "integer",
+                        "label": "Owner ID"
+                    },
+                    {
+                        "name": "lastModified",
+                        "type": "date",
+                        "label": "Last Modification Date"
+                    },
+                    {
+                        "name": "published",
+                        "type": "date",
+                        "label": "Publication date"
+                    },
+                    {
+                        "name": "mainLanguageCode",
+                        "type": "text",
+                        "label": "Main Language Code"
+                    },
+                    {
+                        "name": "alwaysAvailable",
+                        "type": "boolean",
+                        "label": "Is always available"
+                    },
+                    {
+                        "name": "isHidden",
+                        "type": "boolean",
+                        "label": "Is hidden"
+                    },
+                    {
+                        "name": "isDraft",
+                        "type": "boolean",
+                        "label": "Is a draft"
+                    },
+                    {
+                        "name": "isPublished",
+                        "type": "boolean",
+                        "label": "Is published"
+                    },
+                    {
+                        "name": "fields",
+                        "spec": [
+                            {
+                                "name": "task_type",
+                                "spec": [
+                                    {
+                                        "name": "Value",
+                                        "type": "text",
+                                        "label": "value"
+                                    },
+                                    {
+                                        "name": "language",
+                                        "type": "text",
+                                        "label": "Language code"
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Task Type"
+                            },
+                            {
+                                "name": "task_input",
+                                "spec": [
+                                    {
+                                        "name": "Value",
+                                        "type": "text",
+                                        "label": "value"
+                                    },
+                                    {
+                                        "name": "language",
+                                        "type": "text",
+                                        "label": "Language code"
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Instruction"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Fields"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 3,
+            "module": "openai-gpt-3:messageAssistantAdvanced",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 4446
+            },
+            "mapper": {
+                "role": "user",
+                "message": " {{1.name}}",
+                "assistantId": "asst_efYgmMC2VjTkf2jbdkVQv1Oa",
+                "tool_choice": "none"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "role": {
+                            "label": "User"
+                        },
+                        "model": {
+                            "mode": "chose"
+                        },
+                        "tools": {
+                            "mode": "chose"
+                        },
+                        "image_urls": {
+                            "mode": "chose"
+                        },
+                        "assistantId": {
+                            "mode": "chose",
+                            "label": "create_text_from_instructions (gpt-4-0613)",
+                            "nested": []
+                        },
+                        "image_files": {
+                            "mode": "chose"
+                        },
+                        "tool_choice": {
+                            "mode": "chose",
+                            "label": "None"
+                        },
+                        "response_format": {
+                            "mode": "chose",
+                            "label": "Empty"
+                        },
+                        "truncation_strategy": {
+                            "mode": "chose",
+                            "label": "Empty"
+                        },
+                        "file_search_resources": {
+                            "mode": "chose"
+                        },
+                        "code_interpreter_resources": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "openai-gpt-3"
+                            },
+                            "label": "My Connection"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:openai-gpt-3",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "assistantId",
+                        "type": "select",
+                        "label": "Assistant",
+                        "required": true
+                    },
+                    {
+                        "name": "role",
+                        "type": "select",
+                        "label": "Role",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "user",
+                                "assistant"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "threadId",
+                        "type": "text",
+                        "label": "Thread ID"
+                    },
+                    {
+                        "name": "model",
+                        "type": "select",
+                        "label": "Model"
+                    },
+                    {
+                        "name": "tools",
+                        "type": "select",
+                        "label": "Tools",
+                        "multiple": true,
+                        "validate": {
+                            "enum": [
+                                "file_search",
+                                "code_interpreter"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "file_search_resources",
+                        "type": "select",
+                        "label": "File Search Resources"
+                    },
+                    {
+                        "name": "code_interpreter_resources",
+                        "type": "select",
+                        "label": "Code Interpreter Resources",
+                        "multiple": true,
+                        "validate": {
+                            "maxItems": 20
+                        }
+                    },
+                    {
+                        "name": "tool_choice",
+                        "type": "select",
+                        "label": "Tool Choice",
+                        "validate": {
+                            "enum": [
+                                "none",
+                                "auto",
+                                "required",
+                                "file_search",
+                                "code_interpreter",
+                                "function"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "instructions",
+                        "type": "text",
+                        "label": "Instructions"
+                    },
+                    {
+                        "name": "max_prompt_tokens",
+                        "type": "uinteger",
+                        "label": "Max Prompt Tokens"
+                    },
+                    {
+                        "name": "max_completion_tokens",
+                        "type": "uinteger",
+                        "label": "Max Completion Tokens"
+                    },
+                    {
+                        "name": "temperature",
+                        "type": "number",
+                        "label": "Temperature",
+                        "validate": {
+                            "max": 2,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "top_p",
+                        "type": "number",
+                        "label": "Top P",
+                        "validate": {
+                            "max": 1,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "response_format",
+                        "type": "select",
+                        "label": "Response Format",
+                        "validate": {
+                            "enum": [
+                                "auto",
+                                "json_object",
+                                "text"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "truncation_strategy",
+                        "type": "select",
+                        "label": "Truncation Strategy",
+                        "validate": {
+                            "enum": [
+                                "auto",
+                                "last_messages"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "message",
+                        "type": "text",
+                        "label": "Message",
+                        "required": true
+                    },
+                    {
+                        "name": "image_files",
+                        "type": "select",
+                        "label": "Image Files",
+                        "multiple": true
+                    },
+                    {
+                        "name": "image_urls",
+                        "spec": {
+                            "name": "value",
+                            "type": "url",
+                            "label": "Image URL",
+                            "required": true
+                        },
+                        "type": "array",
+                        "label": "Image URLs"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 4,
+            "module": "json:ParseJSON",
+            "version": 1,
+            "parameters": {
+                "type": 1122
+            },
+            "mapper": {
+                "json": "{{3.result}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 0
+                },
+                "restore": {
+                    "parameters": {
+                        "type": {
+                            "label": "My data structure"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "type",
+                        "type": "udt",
+                        "label": "Data structure"
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "json",
+                        "type": "text",
+                        "label": "JSON string",
+                        "required": true
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "headline",
+                        "label": null,
+                        "help": "",
+                        "type": "text",
+                        "default": null,
+                        "required": false,
+                        "multiline": false
+                    },
+                    {
+                        "name": "text",
+                        "label": null,
+                        "help": "",
+                        "type": "text",
+                        "default": null,
+                        "required": false,
+                        "multiline": true
+                    },
+                    {
+                        "name": "summary",
+                        "label": null,
+                        "help": "",
+                        "type": "text",
+                        "default": null,
+                        "required": false,
+                        "multiline": false
+                    }
+                ]
+            }
+        },
+        {
+            "id": 9,
+            "module": "openai-gpt-3:GenerateImage",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 4446
+            },
+            "mapper": {
+                "model": "dall-e-2",
+                "prompt": "{{4.summary}}",
+                "size": "256x256",
+                "n": "1",
+                "response_format": "url"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 900,
+                    "y": 0
+                },
+                "restore": {
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "label": "Your Connection",
+                            "data": {
+                                "scoped": "true",
+                                "connection": "openai-gpt-3"
+                            }
+                        }
+                    },
+                    "expect": {
+                        "model": {
+                            "mode": "chose",
+                            "label": "Dall-E 2"
+                        },
+                        "size": {
+                            "mode": "chose",
+                            "label": "256x256"
+                        },
+                        "response_format": {
+                            "mode": "chose",
+                            "label": "URL"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:openai-gpt-3",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "model",
+                        "type": "select",
+                        "label": "Model",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "gpt-image-1",
+                                "dall-e-3",
+                                "dall-e-2"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "prompt",
+                        "type": "text",
+                        "label": "Prompt",
+                        "validate": {
+                            "max": 1000,
+                            "min": 0
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "size",
+                        "type": "select",
+                        "label": "Size",
+                        "validate": {
+                            "enum": [
+                                "256x256",
+                                "512x512",
+                                "1024x1024"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "n",
+                        "type": "integer",
+                        "label": "Number",
+                        "validate": {
+                            "max": 10,
+                            "min": 1
+                        }
+                    },
+                    {
+                        "name": "response_format",
+                        "type": "select",
+                        "label": "Response Format",
+                        "validate": {
+                            "enum": [
+                                "url",
+                                "b64_json"
+                            ]
+                        }
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "created",
+                        "type": "date",
+                        "label": "Created"
+                    },
+                    {
+                        "name": "data",
+                        "spec": [
+                            {
+                                "name": "url",
+                                "type": "url",
+                                "label": "URL"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Data"
+                    }
+                ],
+                "advanced": true
+            }
+        },
+        {
+            "id": 14,
+            "module": "http:ActionGetFile",
+            "version": 3,
+            "parameters": {
+                "handleErrors": false
+            },
+            "mapper": {
+                "url": "{{9.data[].url}}",
+                "method": "get",
+                "serializeUrl": false,
+                "shareCookies": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1200,
+                    "y": 0
+                },
+                "restore": {},
+                "parameters": [
+                    {
+                        "name": "handleErrors",
+                        "type": "boolean",
+                        "label": "Evaluate all states as errors (except for 2xx and 3xx )",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "url",
+                        "type": "url",
+                        "label": "URL",
+                        "required": true
+                    },
+                    {
+                        "name": "serializeUrl",
+                        "type": "boolean",
+                        "label": "Serialize URL",
+                        "required": true
+                    },
+                    {
+                        "name": "method",
+                        "type": "hidden",
+                        "label": "Method"
+                    },
+                    {
+                        "name": "shareCookies",
+                        "type": "boolean",
+                        "label": "Share cookies with other HTTP modules",
+                        "required": true
+                    }
+                ],
+                "advanced": true
+            }
+        },
+        {
+            "id": 5,
+            "module": "ibexa-dxp:createContent",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 4445
+            },
+            "mapper": {
+                "contentTypeId": 104,
+                "languageCode": "eng-GB",
+                "locationArgument": "browseForLocation",
+                "fields": {
+                    "headline_ibx_type_ezstring": "{{4.headline}}",
+                    "summary_ibx_type_eztext": "{{4.summary}}",
+                    "text_ibx_type_eztext": "{{4.text}}",
+                    "image_ibx_type_ezimage": {
+                        "fileName": "{{14.fileName}}",
+                        "data": "{{14.data}}"
+                    }
+                },
+                "parentLocationPath": "/2/426"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1500,
+                    "y": 0
+                },
+                "restore": {
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "label": "https://yourdxpurl.com/ (https://yourdxpurl.com as admin)",
+                            "data": {
+                                "scoped": "true",
+                                "connection": "ibexa-dxp"
+                            }
+                        }
+                    },
+                    "expect": {
+                        "contentTypeId": {
+                            "mode": "chose",
+                            "nested": [
+                                {
+                                    "name": "fields",
+                                    "spec": [
+                                        {
+                                            "name": "headline_ibx_type_ezstring",
+                                            "label": "Headline",
+                                            "required": false,
+                                            "help": null,
+                                            "type": "text",
+                                            "validate": {
+                                                "min": 0,
+                                                "max": 255
+                                            }
+                                        },
+                                        {
+                                            "name": "summary_ibx_type_eztext",
+                                            "label": "Summary",
+                                            "required": false,
+                                            "help": null,
+                                            "type": "text",
+                                            "multiline": true
+                                        },
+                                        {
+                                            "name": "text_ibx_type_eztext",
+                                            "label": "Text",
+                                            "required": false,
+                                            "help": null,
+                                            "type": "text",
+                                            "multiline": true
+                                        },
+                                        {
+                                            "name": "image_ibx_type_ezimage",
+                                            "label": "image",
+                                            "required": false,
+                                            "help": null,
+                                            "type": "collection",
+                                            "spec": [
+                                                {
+                                                    "name": "fileName",
+                                                    "type": "filename",
+                                                    "label": "File name",
+                                                    "semantic": "file:name"
+                                                },
+                                                {
+                                                    "name": "data",
+                                                    "type": "buffer",
+                                                    "label": "Data",
+                                                    "semantic": "file:data"
+                                                },
+                                                {
+                                                    "name": "alternativeText",
+                                                    "label": "Alternative text",
+                                                    "type": "text"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Fields"
+                                }
+                            ],
+                            "label": "AI Content"
+                        },
+                        "languageCode": {
+                            "mode": "chose",
+                            "label": "English (United Kingdom)"
+                        },
+                        "locationArgument": {
+                            "mode": "chose",
+                            "label": "browse"
+                        },
+                        "extraLocations": {
+                            "mode": "chose"
+                        },
+                        "sectionId": {
+                            "mode": "chose"
+                        },
+                        "parentLocationPath": {
+                            "mode": "edit"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:ibexa-dxp,ibexa-dxp2",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "contentTypeId",
+                        "type": "select",
+                        "label": "Content type",
+                        "required": true
+                    },
+                    {
+                        "name": "languageCode",
+                        "type": "select",
+                        "label": "Language",
+                        "required": true
+                    },
+                    {
+                        "name": "locationArgument",
+                        "type": "select",
+                        "label": "Location",
+                        "validate": {
+                            "enum": [
+                                "parentLocationId",
+                                "parentLocationRemoteId",
+                                "browseForLocation"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "extraLocations",
+                        "type": "array",
+                        "label": "Additional locations",
+                        "spec": [
+                            {
+                                "name": "locationArgument",
+                                "type": "select",
+                                "label": "Location",
+                                "options": [
+                                    {
+                                        "label": "as a location id",
+                                        "value": "extraParentLocation",
+                                        "nested": [
+                                            {
+                                                "name": "id",
+                                                "type": "integer",
+                                                "label": "Location ID"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "label": "as a remote id",
+                                        "value": "extraParentLocationRemote",
+                                        "nested": [
+                                            {
+                                                "name": "id",
+                                                "type": "text",
+                                                "label": "Remote ID",
+                                                "validate": {
+                                                    "max": 32,
+                                                    "min": 8
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "label": "browse",
+                                        "value": "browseForExtraLocation",
+                                        "nested": [
+                                            {
+                                                "name": "path",
+                                                "type": "folder",
+                                                "label": "Browse",
+                                                "options": {
+                                                    "store": "rpc://ibexa-dxp/1/getLocationTree"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "sectionId",
+                        "type": "select",
+                        "label": "Section"
+                    },
+                    {
+                        "name": "remoteId",
+                        "type": "text",
+                        "label": "Remote ID",
+                        "validate": {
+                            "max": 32,
+                            "min": 8
+                        }
+                    },
+                    {
+                        "name": "fields",
+                        "type": "collection",
+                        "label": "Fields",
+                        "spec": [
+                            {
+                                "name": "headline_ibx_type_ezstring",
+                                "type": "text",
+                                "label": "Headline",
+                                "validate": {
+                                    "min": 0,
+                                    "max": 255
+                                }
+                            },
+                            {
+                                "name": "summary_ibx_type_eztext",
+                                "type": "text",
+                                "label": "Summary"
+                            },
+                            {
+                                "name": "text_ibx_type_eztext",
+                                "type": "text",
+                                "label": "Text"
+                            },
+                            {
+                                "name": "image_ibx_type_ezimage",
+                                "type": "collection",
+                                "label": "image",
+                                "spec": [
+                                    {
+                                        "name": "fileName",
+                                        "type": "filename",
+                                        "label": "File name"
+                                    },
+                                    {
+                                        "name": "data",
+                                        "type": "buffer",
+                                        "label": "Data"
+                                    },
+                                    {
+                                        "name": "alternativeText",
+                                        "type": "text",
+                                        "label": "Alternative text"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "parentLocationPath",
+                        "type": "folder",
+                        "label": "Browse"
+                    }
+                ],
+                "advanced": true
+            }
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "ibexa.integromat.celonis.com",
+        "notes": []
+    }
+}
